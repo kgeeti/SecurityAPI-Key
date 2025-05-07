@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "2d1d4780-9217-4a10-b924-3b5936dcf47c",
+		"name": "Spring API-KEY Authentication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11911702",
+		"_collection_link": "https://equipe-dev-senai.postman.co/workspace/Equipe-DEV---SENAI-Workspace~16c2d087-00f4-483f-893a-b5332fe0ff72/collection/11911702-2d1d4780-9217-4a10-b924-3b5936dcf47c?action=share&source=collection_link&creator=11911702"
+	},
+	"item": [
+		{
+			"name": "Public",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/public",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"public"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Private sem Chave",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/private",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"private"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Private",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "chave_exclusiva_api",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/private",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"private"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Manager (Only ADMINs)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "chave_exclusiva_api",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/manager",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"manager"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
