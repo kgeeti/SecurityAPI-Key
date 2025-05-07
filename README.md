@@ -4,13 +4,8 @@ Tutorial de implementação de segurança em APIs (publica e privada) utilizando
 
 ## Configuração
 
-Configure a chave de API na classe AuthenticationService.
-
-**Melhorias:**
-*Implementar leitura da chave pelo application.properties.*
-
+Configure a chave de API e o token na application.properties.
 
 ## Postman Tests
 
 Importe o arquivo `Spring API-KEY Authentication.postman_collection.json` para testes.
-

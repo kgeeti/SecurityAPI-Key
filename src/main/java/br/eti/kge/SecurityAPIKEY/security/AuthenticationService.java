@@ -3,10 +3,12 @@ package br.eti.kge.SecurityAPIKEY.security;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.stereotype.Component;
 
 /**
  * 02
@@ -30,16 +32,26 @@ import org.springframework.security.core.authority.AuthorityUtils;
  * 
  * @author kge
  */
+
+@Component
 public class AuthenticationService {
 
     // TODO: Implementar o nome do token e a chave no application.properties.
     
-    private static final String AUTH_TOKEN_HEADER_NAME = "X-API-KEY";
-    private static final String AUTH_TOKEN = "chave_exclusiva_api";
+    @Value("${auth.token-header-name}")
+    private String AUTH_TOKEN_HEADER_NAME;
+    
+    
+    @Value("${auth.token}")
+    private String AUTH_TOKEN;
+    
+    
+//    private static final String AUTH_TOKEN_HEADER_NAME = "X-API-KEY";
+//    private static final String AUTH_TOKEN = "chave_exclusiva_api";
 
     private static final Logger LOGGER = Logger.getLogger(AuthenticationService.class.getName());
 
-    public static Authentication getAuthentication(HttpServletRequest request) {
+    public Authentication getAuthentication(HttpServletRequest request) {
 
         LOGGER.log(Level.INFO, "02 AuthenticationService acionado!");
         LOGGER.log(Level.INFO, String.format("TokenHeader: %s | Token: %s", AUTH_TOKEN_HEADER_NAME, AUTH_TOKEN));

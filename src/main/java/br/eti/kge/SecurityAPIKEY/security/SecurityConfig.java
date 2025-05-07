@@ -2,6 +2,7 @@ package br.eti.kge.SecurityAPIKEY.security;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -22,6 +23,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Autowired
+    private AuthenticationFilter authenticationFilter;
+    
     private static final Logger LOGGER = Logger.getLogger(AuthenticationService.class.getName());
     
     @Bean
@@ -39,7 +43,7 @@ public class SecurityConfig {
                 )
                 
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(new AuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 ;
         return http.build();
 

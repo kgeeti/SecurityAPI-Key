@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
 /**
@@ -43,9 +45,14 @@ import org.springframework.web.filter.GenericFilterBean;
  *
  * @author kge
  */
+
+@Component
 public class AuthenticationFilter extends GenericFilterBean {
 
     private static final Logger LOGGER = Logger.getLogger( AuthenticationFilter.class.getName() );
+    
+    @Autowired
+    private AuthenticationService authenticationService;
     
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
@@ -68,7 +75,7 @@ public class AuthenticationFilter extends GenericFilterBean {
             
             try {
                 
-                Authentication authentication = AuthenticationService.getAuthentication((HttpServletRequest) request);
+                Authentication authentication = authenticationService.getAuthentication((HttpServletRequest) request);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 filterChain.doFilter(request, response);
         
